@@ -9,6 +9,16 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/hakkımda")
+def hakkımda():
+    return render_template("hakkımda.html")
+
+
+@app.route("/yazi/<string:id>")
+def yazi(id):
+    return "ID " + id
+
+
 
 
 
