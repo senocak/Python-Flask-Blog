@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+    <style type="text/css">
+        .form {
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 0;
+        } 
+    </style>
+    <div class="form">
+        <div class="col-xs-8 col-xs-offset-4"><h2>Makale Oluştur</h2></div>	
+        <hr>
+        {% from "includes/_formhelpers.html" import render_field %}
+        <form method=post class="form-horizontal">
+            {{ render_field(form.title,class="form-control") }}
+            {{ render_field(form.content,class="form-control") }}
+            <button type="submit" class="btn btn-primary btn-lg">Ekle</button>
+        </form>
+    </div>                             
+{% endblock body %}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+       <h3>Makaleler</h3>
+       {% if articles %}
+              <table class="table table-hover">
+                     <thead><tr><th>#</th><th>Title</th><th>Author</th><th>Created Date</th><th></th></tr></thead>
+                     <tbody>
+                            {% set i = 0 %}
+                            {% for article in articles %} 
+                                   {% set i = i + 1 %}
+                                   <tr>
+                                          <td>{{ i }}</td>
+                                          <td>{{ article.title }}</td>
+                                          <td>{{ article.author }}</td>
+                                          <td>{{ article.created_at }}</td>
+                                          <td>
+                                                 <a href="/admin/article/{{ article.id }}/edit" class="btn btn-primary">Edit</a>
+                                                 <a href="/admin/article/{{ article.id }}/delete" class="btn btn-danger">Delete</a>
+                                          </td>
+                                   </tr> 
+                            {% endfor %}
+                     </tbody>
+              </table>
+       {% else %}
+              <div class="alert alert-danger">Yazı Yok</div>
+       {% endif %}
+{% endblock body %}
