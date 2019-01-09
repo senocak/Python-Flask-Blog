@@ -8,16 +8,13 @@
         } 
     </style>
     <div class="signup-form">
-        <div class="col-xs-8 col-xs-offset-4"><h2>Kayıt Ol</h2></div>	
+        <div class="col-xs-8 col-xs-offset-4"><h2>Giriş Yap</h2></div>	
         <hr>
         {% from "includes/_formhelpers.html" import render_field %}
         <form method=post class="form-horizontal">
-            {{ render_field(form.name,class="form-control") }}
             {{ render_field(form.username,class="form-control") }}
-            {{ render_field(form.email,class="form-control") }}
             {{ render_field(form.password,class="form-control") }}
-            {{ render_field(form.confirm,class="form-control") }} 
-            <button type="submit" class="btn btn-primary btn-lg">Kayıt Ol</button>
+            <button type="submit" class="btn btn-primary btn-lg">Giriş Yap</button>
         </form>
     </div>                             
 {% endblock body %}
