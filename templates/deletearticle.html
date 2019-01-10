@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/home-bg.jpg') }}')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading">
+                        <h1>Delete Article</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <a href="/admin/articles" class="btn btn-danger btn-lg btn-block">Articles</a>
+    <br>
+    <div class="form">
+        <form method=post class="form-horizontal">
+            <button type="submit" class="btn btn-success btn-lg btn-block">Delete</button>
+        </form> 
+    </div>                             
+{% endblock body %}

@@ -21,13 +21,13 @@
     </style>
     <a href="/admin/articles" class="btn btn-primary btn-lg btn-block">Articles</a>
     <div class="form">
-        <div class="col-xs-8 col-xs-offset-4"><h2>Makale Oluştur</h2></div>	
+        <div class="col-xs-8 col-xs-offset-4"><h2>Makale Düzenle</h2></div>	
         <hr>
         {% from "includes/_formhelpers.html" import render_field %}
         <form method=post class="form-horizontal">
             {{ render_field(form.title,class="form-control") }}
             {{ render_field(form.content,class="form-control") }}
-            <button type="submit" class="btn btn-success btn-lg btn-block">Ekle</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Güncelle</button>
         </form>
     </div>                             
 {% endblock body %}
