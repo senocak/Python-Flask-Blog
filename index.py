@@ -74,7 +74,7 @@ def login():
             sorgu = "select * from users where username = %s and password = %s"
             result = cursor.execute(sorgu,(username,password))
             if result > 0:
-                data = cursor.fetchone()
+                #data = cursor.fetchone()
                 session["logged_in"] = True
                 session["username"] = username
                 flash("Giriş Başarıyla Yapıldı.","success")
