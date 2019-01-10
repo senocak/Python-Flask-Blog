@@ -1,5 +1,17 @@
 {% extends "layout.html" %}
-{% block body %}
+{% block body %} 
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/home-bg.jpg') }}')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto"> 
+                    <div class="post-heading">
+                        <h1>Kayıt Ol</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header> 
     <style type="text/css">
         .signup-form {
             width: 500px;
@@ -7,9 +19,7 @@
             padding: 30px 0;
         } 
     </style>
-    <div class="signup-form">
-        <div class="col-xs-8 col-xs-offset-4"><h2>Kayıt Ol</h2></div>	
-        <hr>
+    <div class="signup-form">  
         {% from "includes/_formhelpers.html" import render_field %}
         <form method=post class="form-horizontal">
             {{ render_field(form.name,class="form-control") }}

@@ -124,7 +124,7 @@ def register():
 @app.route("/logout")
 def logout():
     session.clear()
-    return render_template("index.html")
+    return redirect(url_for("index")) 
 
 
 @app.route("/admin")
