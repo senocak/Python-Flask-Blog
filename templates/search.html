@@ -26,11 +26,8 @@
             </div>
             <hr>
         {% endfor %}
-
-        {% if articles|length <= page%}
-            <div class="clearfix">
-                <a class="btn btn-primary float-right" href="/index/{{ page+1 }}">Older Posts →</a>
-            </div>
-        {% endif %}
+        <div class="clearfix">
+            <a class="btn btn-primary float-right" href="#">Older Posts →</a>
+        </div>
     </div>
 {% endblock body %}

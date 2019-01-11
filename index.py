@@ -4,6 +4,7 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 import hashlib
 from functools import wraps
+from flask import jsonify
 #Kullanici Giriş Decorater
 def login_required(f):
     @wraps(f)
@@ -24,19 +25,25 @@ app.config["MYSQL_PASSWORD"]    =   ""
 app.config["MYSQL_DB"]          =   "flask"
 app.config["MYSQL_CURSORCLASS"] =   "DictCursor"
 mysql = MySQL(app)
+PER_PAGE = 1
 
 @app.route("/")
 @app.route("/articles")
 @app.route("/article")
-def index():
+@app.route("/index",defaults={'page': 1})
+@app.route("/index/<int:page>")
+def index(page):
+    #return str(page)
+    #page = page - 1
     cursor = mysql.connection.cursor()
-    sorgu = "select * from articles order by created_at desc"
-    result = cursor.execute(sorgu)
-    if result > 0:
+    sorgu = "select * from articles order by created_at desc limit "+str(page-1)+","+str(PER_PAGE)+""
+    result = cursor.execute(sorgu) 
+    #return jsonify(result)
+    if result == 1:
         articles = cursor.fetchall()
-        return render_template("index.html",articles = articles)
+        return render_template("index.html",articles = articles, page = page)
     else:
-        return render_template("index.html")
+        return redirect(url_for("index"))
 
 @app.route("/about")
 def about():
@@ -124,8 +131,25 @@ def register():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("index")) 
+    return redirect(url_for("index"))     
 
+
+@app.route("/search",methods=["GET","POST"])
+def search():
+    if request.method == "GET":
+        return redirect(url_for("index"))
+    else:
+        keyword = request.form.get("ara")
+        cursor = mysql.connection.cursor() 
+        sorgu = "SELECT * FROM articles WHERE title LIKE '%" + keyword + "%'"
+        result = cursor.execute(sorgu)
+        #return jsonify(result)
+        if result == 0:
+            flash("Aranan Kelimeye Uygun Makale Bulunamadı.","danger")
+            return redirect(url_for("index"))
+        else:
+            articles = cursor.fetchall()
+            return render_template("search.html",articles = articles )
 
 @app.route("/admin")
 @app.route("/admin/articles")
