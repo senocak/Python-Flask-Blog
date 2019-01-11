@@ -27,9 +27,9 @@ app.config["MYSQL_CURSORCLASS"] =   "DictCursor"
 mysql = MySQL(app)
 PER_PAGE = 1
 
-@app.route("/")
-@app.route("/articles")
-@app.route("/article")
+@app.route("/",defaults={'page': 1})
+@app.route("/articles",defaults={'page': 1})
+@app.route("/article",defaults={'page': 1})
 @app.route("/index",defaults={'page': 1})
 @app.route("/index/<int:page>")
 def index(page):
