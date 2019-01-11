@@ -60,7 +60,10 @@
         <script src="{{ url_for('static', filename='js/clean-blog.min.js') }}"></script> 
         <script src="https://cdn.ckeditor.com/4.11.1/full-all/ckeditor.js"></script>
         <script>
-            CKEDITOR.replace( 'content' );
+            CKEDITOR.replace( 'content',{
+                allowedContent : true
+            });
         </script>
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
   </body>
 </html>
